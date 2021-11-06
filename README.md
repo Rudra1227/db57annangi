@@ -1,4 +1,5 @@
 # fwb57annangi
 
-This is WEB APPs Assignment 10
-class fish attributes : Name(String),color(String),Age(number)
+This is WEB APPs Assignment 11
+Hosted at https://db57annangi.herokuapp.com/
+
