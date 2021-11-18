@@ -18,21 +18,21 @@ async function recreateDB()
   await fish.deleteMany();
   let instance1 = new
   fish({
-    Name: "regular",
-    colour: 12,
-    age: 38.24
+    Name: "Goldfish",
+    colour: "Gold",
+    age: 24
   });
   let instance2 = new
   fish({
-    Name: "plus",
-    color: 8,
-    age: 29.67
+    Name: "Bluefish",
+    colour: "Blue",
+    age: 22
   });
   let instance3 = new
   fish({
-    Name: "v-power",
-    color: 16,
-    age: 64.09
+    Name: "Swordfish",
+    colour: "Silver",
+    age: 09
   });  
   instance1.save(function (err, doc) {
     if (err) return console.error(err);

@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let fishid = toShow._id 
+    - let Name = toShow.Name 
+    - let colour = toShow.colour
+    - let age = toShow.age
+    - let actionid = "/resource/fish/" + fishid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='fishAttr mr-3') fish ID is:
+        div #{fishid} 
+      div.row 
+        div(class='fishAttr mr-3') fish Type is: 
+        div #{Name} 
+      div.row 
+        div(class='fishAttr mr-3') fish colour is: 
+        div #{colour} 
+      div.row 
+        div(class='fishAttr mr-3') fish age is: 
+        div #{age} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the fish collection 
+      window.location.href='/fishs' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/fishs' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 

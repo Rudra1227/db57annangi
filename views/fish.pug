@@ -2,14 +2,19 @@ extends layout
 
 block content
   h1= title
-  - var results = [{"Name":"Goldfish", "color":"Gold","Age":12},{"Name":"Bluefish", "color":"Blue","Age":14},{"Name":"Swordfish", "color":"Silver","Age":8}]
+  - let o;
+  - var results = [{"Name":"Goldfish", "colour":"Gold","age":12},{"Name":"Bluefish", "colour":"Blue","age":14},{"Name":"Swordfish", "colour":"Silver","age":8}]
   div(class="container-fuild")
     div(class="row")
       each result,index in results
-        div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
-          p #{result.Name}
-          p #{result.color}
-          p #{result.Age}  
+        div(class="card text-dark bg-danger mb-3" class='col' class='card' class='card-body' class='card-text' onclick='buy('+index+')') #{o}
+          div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
+            p #{result.Name}
+            p #{result.colour}
+            p #{result.age}  
+            a(href="fish/update/?id="+result.id)  Update
+            a(href="fish/detail/?id="+result.id)  View
+            a(href="fish/delete/?id="+result.id)  Delete
 
   script.
    function buy(element){
