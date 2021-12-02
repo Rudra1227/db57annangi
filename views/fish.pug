@@ -6,12 +6,18 @@ block content
   - let items = results;
   div(class="container-fuild")
     div(class='row m-1')
-    div(class= "row row-cols-1 row-cols-sm-4 g-6")
+    a.btn( class="btn-primary  m-2", href= "/fish/create") Create
+    div(class= "row row-cols-1 row-cols-sm-4 g-6 justify-content-equially")
       each item, index in items
         - let destination = `dispatch(\"/fish/update?id=${item._id}\")`
-        div(class="card text-white bg-success mb-3" class='col card card-body card-text' onclick='buy('+index+')') Item #{item.Name}(#{item.colour}) is #{item.age}
-          <br><br>
-          button.btn( class="btn-warning ml-1", onclick= destination) Update
+        div(class="card text-white bg-success mb-3"  onclick='buy('+index+')') 
+          div(class="card-body m-2") 
+              div(class="p-2 text-center") Name : #{item.Name}
+              div(class="p-2 text-center") Color : #{item.colour}
+              div(class="p-2 text-center") Age : #{item.age}
+              a.btn( class="btn-warning sm-2 m-2", href= "/fish/update?id="+item._id) Update
+              a.btn( class="btn-primary sm-2 m-2", href= "/fish/detail?id="+item._id) Detail
+              a.btn( class="btn-danger sm-2 m-2", href= "/fish/delete?id="+item._id) Delete
 
   script.
    function buy(element){
