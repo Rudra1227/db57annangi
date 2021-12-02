@@ -3,20 +3,22 @@ extends layout
 block content
   h1= title
   - let o;
-  - var results = [{"Name":"Goldfish", "colour":"Gold","age":12},{"Name":"Bluefish", "colour":"Blue","age":14},{"Name":"Swordfish", "colour":"Silver","age":8}]
+  - let items = results;
   div(class="container-fuild")
-    div(class="row")
-      each result,index in results
-        div(class="card text-dark bg-danger mb-3" class='col' class='card' class='card-body' class='card-text' onclick='buy('+index+')') #{o}
-          div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
-            p #{result.Name}
-            p #{result.colour}
-            p #{result.age}  
-            a(href="fish/update/?id="+result.id)  Update
-            a(href="fish/detail/?id="+result.id)  View
-            a(href="fish/delete/?id="+result.id)  Delete
+    div(class='row m-1')
+    div(class= "row row-cols-1 row-cols-sm-4 g-6")
+      each item, index in items
+        - let destination = `dispatch(\"/fish/update?id=${item._id}\")`
+        div(class="card text-white bg-success mb-3" class='col card card-body card-text' onclick='buy('+index+')') Item #{item.Name}(#{item.colour}) is #{item.age}
+          <br><br>
+          button.btn( class="btn-warning ml-1", onclick= destination) Update
 
   script.
    function buy(element){
      alert(`You purchased item ${element+1}.`)
+    }
+
+  script.
+    function dispatch(path){
+      window.location.href=path
     }
